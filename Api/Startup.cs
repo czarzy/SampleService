@@ -34,7 +34,7 @@ namespace Api
             services.AddMassTransitHostedService();
             services.AddHangfire(cfg =>
             {
-                cfg.UseSqlServerStorage(Environment.GetEnvironmentVariable("HANGFIRE_CONNECTIONSTRING"))
+                cfg.UseSqlServerStorage($"{Environment.GetEnvironmentVariable("SQL_CONNECTIONSTRING")};database={Environment.GetEnvironmentVariable("HANGFIRE_DATABASE")}")
                     .UseDashboardMetric(SqlServerStorage.ActiveConnections)
                     .UseDashboardMetric(SqlServerStorage.TotalConnections)
                     .UseDashboardMetric(DashboardMetrics.FailedCount);
