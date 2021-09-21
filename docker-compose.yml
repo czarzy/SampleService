@@ -8,13 +8,15 @@ services:
       dockerfile: Api/Dockerfile
     container_name: sample
     ports:
-      - "15001:80"
+      - "5332:80"
     environment:
       - RABBITMQ_URI=${RABBITMQ_URI}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASS=${RABBITMQ_PASS}
       - TEMP_PATH=${TEMP_PATH}
       - HANGFIRE_CONNECTIONSTRING=${HANGFIRE_CONNECTIONSTRING}
       - HANGFIRE_USER=${HANGFIRE_USER}
       - HANGFIRE_PASSWORD=${HANGFIRE_PASSWORD}
       - QUEUE_NAME=${QUEUE_NAME}
     volumes:
-      - /var/tmp/scheduler/:/app/temp
+      - /var/tmp/sample/:/app/temp

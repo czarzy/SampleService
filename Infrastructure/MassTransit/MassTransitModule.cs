@@ -14,11 +14,10 @@ namespace Infrastructure.MassTransit
                 mt.AddConsumer<MessageConsumer>();
                 mt.AddBus(provider => Bus.Factory.CreateUsingRabbitMq(cfg =>
                 {
-                    cfg.UseHealthCheck(provider);
                     cfg.Host(new Uri(Environment.GetEnvironmentVariable("RABBITMQ_URI")), h =>
                     {
-                        h.Username("user");
-                        h.Password("password");
+                        h.Username("RABBITMQ_USER");
+                        h.Password("RABBITMQ_PASS");
                     });
                     cfg.ReceiveEndpoint(Environment.GetEnvironmentVariable("QUEUE_NAME"), ep =>
                     {

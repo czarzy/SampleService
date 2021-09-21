@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  sample:
+    ports:
+      - "80"
+    volumes:
+      - d:/shared/sample:/app/temp

@@ -1,0 +1,24 @@
+version: '3.4'
+
+services:
+  sample:
+    image: ${DOCKER_REGISTRY-}sample-development
+    build:
+      context: .
+      dockerfile: Api/development.Dockerfile
+    container_name: sample_development
+    ports:
+      - "5333:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RABBITMQ_URI=${RABBITMQ_URI}
+      - RABBITMQ_USER=${RABBITMQ_USER}
+      - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD}
+      - TEMP_PATH=${TEMP_PATH}
+      - SQL_CONNECTIONSTRING=${SQL_CONNECTIONSTRING}
+      - HANGFIRE_DATABASE=${HANGFIRE_DATABASE}
+      - HANGFIRE_USER=${HANGFIRE_USER}
+      - HANGFIRE_PASSWORD=${HANGFIRE_PASSWORD}
+      - QUEUE_NAME=${QUEUE_NAME}
+    volumes:
+      - /var/tmp/sample:/app/temp
